@@ -46,3 +46,14 @@ a:hover {
 a:active {
     color: orange;
 }
+
+div.menu {
+    border: 7px solid #42233f80;
+    border-radius: 5px;
+    width: 300px;
+    margin: 0 auto;
+}
+div.menu:hover {
+    background-color: #ffb3f530;
+    box-shadow: 0 0 15px #65035530;
+}
