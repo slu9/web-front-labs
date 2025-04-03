@@ -26,3 +26,20 @@ header{
     padding: 10px; 
     font-size: 16pt;
 }
+a {
+    color: purple;
+}
+a:link {
+    color: rgb(148, 99, 99);
+}
+a:visited {
+    color: rgb(72, 6, 6);
+}
+a:hover {
+    color: brown;
+    text-decoration: underline;
+    box-shadow: rgb(67, 6, 69) 3px 3px;
+}
+a:active {
+    color: orange;
+}
