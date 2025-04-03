@@ -28,6 +28,8 @@ header{
 }
 a {
     color: purple;
+    text-decoration: none;
+    transition: 1s 2s;
 }
 a:link {
     color: rgb(148, 99, 99);
@@ -39,6 +41,7 @@ a:hover {
     color: brown;
     text-decoration: underline;
     box-shadow: rgb(67, 6, 69) 3px 3px;
+    transition: 0.3s;
 }
 a:active {
     color: orange;
