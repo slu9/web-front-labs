@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Зырянова Софья Сергеевна. Лабораторная 4</title>
+    <link rel="stylesheet" href="../main.css">
+    <link rel="shortcut icon" href="../favicon.ico" type="image/x-icon">
+    <link rel="icon" href="../favicon-32x32.png">
+    <link rel="icon" href="../favicon-16x16.png">
+    <style>
+        .comic {
+    position: relative;
+    width: 1000px;
+    height: 600px; 
+    margin: 20px auto; 
+        }
+        .cloud {
+            position: absolute;
+            border-radius: 50%;
+            border: 2px solid black;
+            background-color: rgba(255, 255, 255, 0.8); 
+            box-shadow: 5px 5px 20px rgba(0, 0, 0, 0.705);
+            opacity: 0; 
+            transition: opacity 0.5s ease-in-out; 
+            font-size: 16px;
+            padding: 10px;
+            text-align: center;
+            color: black;
+        }
+
+        .cloud1 {
+            left: 350px;
+            top: 200px;
+            width: 50px;
+            height: 50px;
+        }
+
+        .cloud2 {
+            left: 400px;
+            top: 200px;
+            width: 70px;
+            height: 70px;
+        }
+
+        .cloud3 {
+            left: 450px;
+            top: 250px;
+            width: 90px;
+            height: 90px;
+        }
+
+        .cloud4 {
+            left: 500px;
+            top: 350px;
+            width: 150px;
+            height: 70px;
+            border-radius: 20px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .comic:hover .cloud1 {
+            opacity: 1;
+            transition-delay: 0.2s;
+        }
+
+        .comic:hover .cloud2 {
+            opacity: 1;
+            transition-delay: 0.4s;
+        }
+
+        .comic:hover .cloud3 {
+            opacity: 1;
+            transition-delay: 0.6s;
+        }
+
+        .comic:hover .cloud4 {
+            opacity: 1;
+            transition-delay: 0.8s;
+        }
+        .comic:not(:hover) .cloud1,
+        .comic:not(:hover) .cloud2,
+        .comic:not(:hover) .cloud3,
+        .comic:not(:hover) .cloud4 {
+            opacity: 0;
+            transition-delay: 0s;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        НГТУ, ФБ, Лабораторная работа 4
+    </header>
+
+    <main>
+        <div class="comic">
+            <img src="izobrazhenie-15-680x380.png" style="width: 1000px; height: 600px;">
+            <div class="cloud cloud1"></div>
+            <div class="cloud cloud2"></div>
+            <div class="cloud cloud3"></div>
+            <div class="cloud cloud4">TRALALERO TRALALA</div>
+        </div>
+    </main>
+
+    <footer>
+        &copy; Софья Зырянова, ФБИ-34, 2 курс, 2025
+    </footer>
+</body>
+</html>
