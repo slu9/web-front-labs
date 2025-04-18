@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Зырянова Софья Сергеевна. Лабораторная 4. Облако тегов</title>
+    <link rel="stylesheet" href="../main.css">
+    <link rel="stylesheet" href="tags.css">
+    <link rel="shortcut icon" href="../favicon.ico" type="image/x-icon">
+    <link rel="icon" href="../favicon-32x32.png">
+    <link rel="icon" href="../favicon-16x16.png">
+    <style>
+        body {
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+            margin: 0;
+        }
+
+        main {
+            flex: 1;
+            display: flex;
+            justify-content: center; 
+            align-items: center;
+        }
+
+        .tag-cloud {
+            position: relative;
+            width: 100%; 
+            height: 80vh; 
+            overflow: visible; 
+            min-height: 300px; 
+        }
+
+        .tag {
+            position: absolute;
+            padding: 5px 10px;
+            border-radius: 5px;
+            color: white;
+            text-decoration: none;
+            transition: all 0.3s ease-in-out;
+            z-index: 1; 
+        }
+
+        .tag:hover {
+            z-index: 2; 
+            transform: scale(1.2) !important; 
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3); 
+        }
+
+        .tag1 {
+            top: 10%;
+            left: 5%;
+            font-size: 18px;
+            background-color: #3498db;
+            transform: rotate(-10deg);
+        }
+
+        .tag2 {
+            top: 25%;
+            left: 15%;
+            font-size: 22px;
+            background-color: #e74c3c;
+            transform: rotate(15deg);
+        }
+
+        .tag3 {
+            top: 40%;
+            left: 30%;
+            font-size: 36px;
+            background-color: #2ecc71;
+            transform: rotate(-5deg);
+        }
+
+        .tag4 {
+            top: 35%;
+            left: 45%;
+            font-size: 20px;
+            background-color: #f39c12;
+            transform: rotate(8deg);
+        }
+
+        .tag5 {
+            top: 70%;
+            left: 60%;
+            font-size: 14px;
+            background-color: #9b59b6;
+            transform: rotate(-12deg);
+        }
+
+        .tag6 {
+            top: 85%;
+            left: 75%;
+            font-size: 41px;
+            background-color: #34495e;
+            transform: rotate(3deg);
+        }
+
+        .tag7 {
+            top: 15%;
+            left: 85%;
+            font-size: 28px;
+            background-color: #16a085;
+            transform: rotate(10deg);
+        }
+
+        .tag8 {
+            top: 30%;
+            left: 90%;
+            font-size: 17px;
+            background-color: #c0392b;
+            transform: rotate(-7deg);
+        }
+
+        .tag9 {
+            top: 45%;
+            left: 5%;
+            font-size: 35px;
+            background-color: #7f8c8d;
+            transform: rotate(5deg);
+        }
+
+        .tag10 {
+            top: 65%;
+            left: 20%;
+            font-size: 47px;
+            background-color: #27ae60;
+            transform: rotate(-3deg);
+        }
+
+        .tag11 {
+            top: 75%;
+            left: 35%;
+            font-size: 50px;
+            background-color: #d35400;
+            transform: rotate(7deg);
+        }
+
+        .tag12 {
+            top: 90%;
+            left: 50%;
+            font-size: 16px;
+            background-color: #8e44ad;
+            transform: rotate(-9deg);
+        }
+
+        .tag13 {
+            top: 10%;
+            left: 65%;
+            font-size: 28px;
+            background-color: #2980b9;
+            transform: rotate(12deg);
+        }
+
+        .tag14 {
+            top: 25%;
+            left: 80%;
+            font-size: 17px;
+            background-color: #f1c40f;
+            transform: rotate(-2deg);
+        }
+
+        .tag15 {
+            top: 40%;
+            left: 65%;
+            font-size: 48px;
+            background-color: #c39bd3;
+            transform: rotate(4deg);
+        }
+
+        .tag16 {
+            top: 55%;
+            left: 10%;
+            font-size: 37px;
+            background-color: #7d6608;
+            transform: rotate(14deg);
+        }
+    </style>
+</head>
+<body>
+    <header>
+        НГТУ, ФБ, Лабораторная работа 4. Облако тегов
+    </header>
+
+    <main>
+        <div class="tag-cloud">
+            <span class="tag tag1">Функция</span>
+            <span class="tag tag2">Переменная</span>
+            <span class="tag tag3">Класс</span>
+            <span class="tag tag4">Объект</span>
+            <span class="tag tag5">Массив</span>
+            <span class="tag tag6">Цикл</span>
+            <span class="tag tag7">Алгоритм</span>
+            <span class="tag tag8">Отладка</span>
+            <span class="tag tag9">Компиляция</span>
+            <span class="tag tag10">Интерфейс</span>
+            <span class="tag tag11">Протокол</span>
+            <span class="tag tag12">База данных</span>
+            <span class="tag tag13">Рекурсия</span>
+            <span class="tag tag14">Поток</span>
+            <span class="tag tag15">Исключение</span>
+            <span class="tag tag16">API</span>
+        </div>
+    </main>
+
+    <footer>
+        &copy; Софья Зырянова, ФБИ-34, 2 курс, 2025
+    </footer>
+</body>
+</html>
