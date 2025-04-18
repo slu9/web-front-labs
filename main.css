@@ -6,7 +6,7 @@ body {
 }
 
 main {
-    background-color: lightgrey;
+    background-color: rgba(211, 211, 211, 0);
     padding: 10px;
     margin: 10px 20px 45px;
 }
