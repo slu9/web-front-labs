@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Зырянова Софья Сергеевна. Лабораторная 5</title>
+    <link rel="stylesheet" href="../main.css">
+    <link rel="shortcut icon" href="favicon.ico" type="image/x-icon">
+    <link rel="icon" href="favicon-32x32.png">
+    <link rel="icon" href="favicon-16x16.png">
+    <script>
+        function calculateTotal() {
+            let total = 0;
+            const prices = [500, 1200, 15000, 8000, 4000]; 
+            const quantities = [];
+
+            for (let i = 1; i <= 5; i++) {
+                const quantityInput = document.getElementById(`quantity${i}`);
+                const quantity = parseInt(quantityInput.value) || 0; 
+                quantities.push(quantity);
+            }
+
+            for (let i = 0; i < prices.length; i++) {
+                total += prices[i] * quantities[i];
+            }
+
+            const totalAmountElement = document.getElementById('total-amount');
+            totalAmountElement.textContent = `Общая сумма к оплате: ${total} ₽`;
+        }
+
+        function clearCart() {
+            for (let i = 1; i <= 5; i++) {
+                const quantityInput = document.getElementById(`quantity${i}`);
+                quantityInput.value = ""; 
+            }
+            const totalAmountElement = document.getElementById('total-amount');
+            totalAmountElement.textContent = ""; 
+        }
+    </script>
+    <style>
+        .cart-container {
+            max-width: 800px;
+            margin: 20px auto;
+            padding: 20px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+
+        .cart-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 10px;
+            padding: 10px;
+            border: 1px solid #eee;
+            border-radius: 3px;
+        }
+
+        .item-name {
+            font-weight: bold;
+            flex-grow: 1; 
+        }
+
+        .item-price {
+            margin-left: 10px; 
+        }
+
+        input[type="number"] {
+            width: 80px;
+            padding: 5px;
+            border-radius: 3px;
+            border: 1px solid #ccc;
+            text-align: center;
+        }
+
+        .cart-buttons {
+            margin-top: 20px;
+            text-align: center;
+        }
+
+        button {
+            padding: 10px 20px;
+            margin: 0 10px;
+            border: none;
+            border-radius: 5px;
+            background-color: #4CAF50;
+            color: white;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background-color: #3e8e41;
+        }
+
+        .total-amount {
+            margin-top: 20px;
+            font-weight: bold;
+            text-align: right;
+            font-size: 1.2em;
+        }
+    </style>
+</head>
+
+<body>
+    <header>
+        НГТУ, ФБ, Лабораторная работа 5
+        <hr>
+    </header>
+    
+    <main>
+        <section class="cart-container">
+            <h2>Корзина</h2>
+            <div class="cart-item">
+                <span class="item-name">Товар 1 - Книга "Java для начинающих"</span>
+                <span class="item-price">Цена: 500 ₽</span>
+                <label for="quantity1">Количество:</label>
+                <input type="number" id="quantity1" name="quantity1" min="0" placeholder="Введите количество">
+            </div>
+            <div class="cart-item">
+                <span class="item-name">Товар 2 - Мышь беспроводная</span>
+                <span class="item-price">Цена: 1200 ₽</span>
+                <label for="quantity2">Количество:</label>
+                <input type="number" id="quantity2" name="quantity2" min="0" placeholder="Введите количество">
+            </div>
+            <div class="cart-item">
+                <span class="item-name">Товар 3 - Монитор 24 дюйма</span>
+                <span class="item-price">Цена: 15000 ₽</span>
+                <label for="quantity3">Количество:</label>
+                <input type="number" id="quantity3" name="quantity3" min="0" placeholder="Введите количество">
+            </div>
+            <div class="cart-item">
+                <span class="item-name">Товар 4 - Клавиатура механическая</span>
+                <span class="item-price">Цена: 8000 ₽</span>
+                <label for="quantity4">Количество:</label>
+                <input type="number" id="quantity4" name="quantity4" min="0" placeholder="Введите количество">
+            </div>
+            <div class="cart-item">
+                <span class="item-name">Товар 5 - Наушники игровые</span>
+                <span class="item-price">Цена: 4000 ₽</span>
+                <label for="quantity5">Количество:</label>
+                <input type="number" id="quantity5" name="quantity5" min="0" placeholder="Введите количество">
+            </div>
+            <div class="cart-buttons">
+                <button onclick="calculateTotal()">Рассчитать</button>
+                <button onclick="clearCart()">Очистить</button>
+            </div>
+            <div id="total-amount" class="total-amount"></div>
+        </section>
+    </main>
+
+    <footer>
+        &copy;Зырянова Софья, ФБИ-34, 2 курс, 2025
+        <hr>
+    </footer>
+
+</body>
+</html>
