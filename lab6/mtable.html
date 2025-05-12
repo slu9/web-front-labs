@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Зырянова Софья Сергеевна. Лабораторная 6</title>
+    <link rel="stylesheet" href="../main.css">
+    <link rel="shortcut icon" href="favicon.ico" type="image/x-icon">
+    <link rel="icon" href="favicon-32x32.png">
+    <link rel="icon" href="favicon-16x16.png">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #d4b3dd;
+            margin: 0;
+            padding: 0;
+        }
+    
+        #mtable {
+            background-color: #d2ecf8;
+            width: 300px;
+            margin: 30px auto 20px;
+            padding: 20px;
+            border-radius: 15px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+        }
+    
+        #mtable div {
+            text-align: left;
+            font-size: 16px;
+            margin-left: 10px;
+        }
+    
+        h1 {
+            color: darkred;
+            text-align: center;
+            margin-top: 0;
+            margin-bottom: 20px;
+        }
+    
+        #form-section {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 15px;
+            flex-wrap: wrap;
+            margin-bottom: 40px;
+        }
+    
+        #form-section label {
+            font-weight: bold;
+            color: #2d0035;
+        }
+    
+        #form-section input {
+            padding: 5px;
+            width: 60px;
+            border-radius: 5px;
+            border: 1px solid #888;
+            text-align: center;
+        }
+    
+        #form-section button {
+            padding: 6px 12px;
+            background-color: #3e1c65;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+    
+        #form-section button:hover {
+            background-color: #5c288c;
+        }
+    </style>
+    
+    <script>
+        function showMultipleTable() {
+            let tbl = document.getElementById('mtable');
+            tbl.innerHTML = '<h1>Таблица умножения</h1>';
+            for(i = 1; i <= 10; i++) {
+                let s = `<div>${i} * 7 = ${i*7}</div>`;
+                tbl.innerHTML +=s;
+            }    
+        }
+        function generateCustomTable() {
+            let tbl = document.getElementById('mtable');
+            let num = parseInt(document.getElementById("number").value);
+            let start = parseInt(document.getElementById("start").value);
+            let end = parseInt(document.getElementById("end").value);
+
+            tbl.innerHTML = '<h1>Таблица умножения</h1>';
+
+            if (isNaN(num) || isNaN(start) || isNaN(end)) {
+                tbl.innerHTML += "<p style='color:red'>Пожалуйста, введите все значения</p>";
+                return;
+            }
+
+            if (start > end) {
+                [start, end] = [end, start];
+            }
+
+            for (let i = start; i <= end; i++) {
+                tbl.innerHTML += `<div>${i} * ${num} = ${i * num}</div>`;
+            }
+        }
+    </script>
+    
+</head>
+
+<body onload="showMultipleTable()">
+    <header>
+        НГТУ, ФБ, Лабораторная работа 6
+        <hr>
+    </header>
+    
+    <main>
+        <div id="mtable"></div>
+        <div id="form-section">
+            <label>Умножить на: <input type="number" id="number" value="7"></label>
+            <label>Начать с: <input type="number" id="start" value="1"></label>
+            <label>Закончить на: <input type="number" id="end" value="10"></label>
+            <br>
+            <button onclick="generateCustomTable()">Таблица</button>
+        </div>
+    </main>
+
+    <footer>
+        &copy;Зырянова Софья, ФБИ-34, 2 курс, 2025
+        <hr>
+    </footer>
+
+</body>
+</html>
