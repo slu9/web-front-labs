@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Зырянова Софья Сергеевна. Лабораторная 6</title>
+    <link rel="stylesheet" href="../main.css">
+    <link rel="shortcut icon" href="favicon.ico" type="image/x-icon">
+    <link rel="icon" href="favicon-32x32.png">
+    <link rel="icon" href="favicon-16x16.png">
+    <style>
+        #current-date {
+            background-color: #c8ecf0;
+            padding: 20px;
+            margin: 30px auto;
+            width: fit-content;
+            border-radius: 10px;
+            font-family: Arial, sans-serif;
+        }
+
+        .locale-line {
+            color: darkred;
+            margin-bottom: 8px;
+            font-size: 16px;
+        }
+    </style>
+    <script>
+        function showDate() {
+            let out = document.getElementById('current-date');
+            let today = new Date();
+            out.innerHTML = `<div class="locale-line">Дата и время для русской локали: ${today.toLocaleString('ru-RU')}</div>`;
+            const locales = [
+                { label: "локали ЮАР", code: "en-ZA" },
+                { label: "локали Египта", code: "ar-EG" },
+                { label: "греческой локали", code: "el-GR" },
+                { label: "пакистанской локали", code: "en-PK" },
+                { label: "китайской локали", code: "zh-CN" }
+            ];
+
+            for (let loc of locales) {
+                const formatted = today.toLocaleString(loc.code);
+                out.innerHTML += `<div class="locale-line">Дата и время для ${loc.label}: ${formatted}</div>`;
+            }
+        }
+    </script>
+</head>
+
+<body onload="showDate()">
+    <header>
+        НГТУ, ФБ, Лабораторная работа 6
+        <hr>
+    </header>
+    
+    <main>
+        <div id="current-date"></div>
+    </main>
+
+    <footer>
+        &copy;Зырянова Софья, ФБИ-34, 2 курс, 2025
+        <hr>
+    </footer>
+
+</body>
+</html>
