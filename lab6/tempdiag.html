@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Зырянова Софья Сергеевна. Лабораторная 6</title>
+    <link rel="stylesheet" href="../main.css">
+    <link rel="shortcut icon" href="favicon.ico" type="image/x-icon">
+    <link rel="icon" href="favicon-32x32.png">
+    <link rel="icon" href="favicon-16x16.png">
+  <style>
+    body {
+      font-family: Arial;
+      background-color: #d9eefa;
+      margin: 0;
+      padding: 0;
+    }
+
+    #chart {
+      display: flex;
+      align-items: flex-end;
+      justify-content: space-between;
+      padding: 20px;
+      border: 3px solid #3a3b8b;
+      width: 95%;
+      margin: 20px auto;
+      background-color: white;
+      height: 300px;
+    }
+
+    .bar {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      margin: 0 2px;
+      position: relative;
+      width: 20px;
+    }
+
+    .min {
+    background-color: #0066cc; 
+    width: 100%;
+    }
+
+    .max {
+    background-color: #66ccff; 
+    width: 100%;
+    }
+
+    .highlight .min {
+    background-color: #ff6600 !important; 
+    }
+
+    .highlight .max {
+    background-color: #ffd1a9 !important; 
+    }
+
+    #info {
+      text-align: center;
+      padding: 10px;
+      background-color: #cfeaf6;
+    }
+
+    input {
+      width: 40px;
+      text-align: center;
+    }
+
+    button {
+      margin-left: 10px;
+      padding: 4px 10px;
+    }
+
+    .label {
+      position: absolute;
+      top: -20px;
+      font-size: 12px;
+    }
+  </style>
+</head>
+<body onload="generateChart()">
+  <header>
+    НГТУ, ФБ, Лабораторная работа 6
+    <hr />
+  </header>
+
+  <main>
+    <div id="chart"></div>
+
+    <div id="info">
+      Номер дня: <input type="number" id="dayInput" min="1" max="30" />
+      <button onclick="highlightDay()">Показать</button>
+      <p id="tempInfo"></p>
+    </div>
+  </main>
+
+  <footer>
+    &copy; Зырянова Софья, ФБИ-34, 2 курс, 2025
+    <hr />
+  </footer>
+
+  <script>
+    const temperatures = [];
+    const chart = document.getElementById("chart");
+
+    function generateChart() {
+      for (let i = 0; i < 30; i++) {
+        const tMin = Math.floor(Math.random() * 10) + 10;
+        const tMax = tMin + Math.floor(Math.random() * 10) + 5;
+        temperatures.push({ min: tMin, max: tMax });
+
+        const bar = document.createElement("div");
+        bar.className = "bar";
+
+        const maxBar = document.createElement("div");
+        maxBar.className = "max";
+        maxBar.style.height = (tMax - tMin) * 5 + "px";
+        maxBar.title = `${tMax}°C`;
+
+        const minBar = document.createElement("div");
+        minBar.className = "min";
+        minBar.style.height = tMin * 5 + "px";
+        minBar.title = `${tMin}°C`;
+
+        const label = document.createElement("div");
+        label.className = "label";
+        label.innerText = `${tMax}°C`;
+
+        bar.appendChild(label);
+        bar.appendChild(maxBar);
+        bar.appendChild(minBar);
+        chart.appendChild(bar);
+      }
+    }
+
+    function highlightDay() {
+      const day = parseInt(document.getElementById("dayInput").value);
+      const bars = document.querySelectorAll(".bar");
+      const info = document.getElementById("tempInfo");
+
+      if (isNaN(day) || day < 1 || day > 30) {
+        alert("Введите номер дня от 1 до 30");
+        return;
+      }
+
+      bars.forEach(bar => bar.classList.remove("highlight"));
+      bars[day - 1].classList.add("highlight");
+
+      const t = temperatures[day - 1];
+      info.innerHTML = `Минимальная температура: <b>${t.min}°C</b><br>Максимальная температура: <b>${t.max}°C</b>`;
+    }
+  </script>
+</body>
+</html>
