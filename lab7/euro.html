@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Зырянова Софья Сергеевна. Лабораторная 7</title>
+    <link rel="stylesheet" href="../main.css">
+    <link rel="shortcut icon" href="favicon.ico" type="image/x-icon">
+    <link rel="icon" href="favicon-32x32.png">
+    <link rel="icon" href="favicon-16x16.png">
+    <style>
+        #euro-info {
+            margin-top: 20px;
+            padding: 15px;
+            border: 2px solid #0077cc;
+            border-radius: 8px;
+            background-color: #f0f8ff;
+            font-family: Arial, sans-serif;
+            width: fit-content;
+        }
+        #euro-info h3 {
+            margin-top: 0;
+            color: #005599;
+        }
+        .positive {
+            color: green;
+        }
+        .negative {
+            color: red;
+        }
+    </style>
+    <script>
+    function getEuroExchangeRate() {
+        const url = 'https://www.cbr-xml-daily.ru/daily_json.js';
+        fetch(url)
+        .then(response => response.json())
+        .then(json => {
+            const current = json.Valute.EUR.Value;
+            const previous = json.Valute.EUR.Previous;
+            const date = new Date(json.Date).toLocaleDateString();
+            const diff = (current - previous).toFixed(4);
+            const direction = diff > 0 ? "поднялся" : (diff < 0 ? "опустился" : "не изменился");
+            const diffClass = diff > 0 ? "positive" : (diff < 0 ? "negative" : "");
+
+            document.getElementById('euro-info').innerHTML = 
+                `<h3>Курс евро по данным ЦБ РФ</h3>
+                <p><strong>Дата запроса:</strong> ${date}</p>
+                <p><strong>Текущий курс:</strong> ${current.toFixed(4)} ₽</p>
+                <p><strong>Курс за предыдущую дату:</strong> ${previous.toFixed(4)} ₽</p>
+                <p><strong>Разница:</strong> <span class="${diffClass}">${diff} ₽</span> — курс <strong>${direction}</strong></p>
+                <p><span style="color: brown;">Источник: ЦБ РФ — <a href="https://www.cbr-xml-daily.ru" target="_blank">cbr-xml-daily.ru</a></span></p>`;
+
+            document.getElementById('euro-btn').remove();  
+            })
+        }
+    </script>
+</head>
+
+<body>
+    <header>
+        НГТУ, ФБ, Лабораторная работа 7
+        <hr>
+    </header>
+    
+    <main>
+        <button id="euro-btn" onclick="getEuroExchangeRate()">Получить курс евро</button>
+        <div id="euro-info"></div> 
+    </main>
+
+    <footer>
+        &copy; Зырянова Софья, ФБИ-34, 2 курс, 2025
+        <hr>
+    </footer>
+</body>
+</html>
