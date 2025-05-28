@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Зырянова Софья Сергеевна. Лабораторная 7</title>
+    <link rel="stylesheet" href="../main.css">
+    <link rel="shortcut icon" href="favicon.ico" type="image/x-icon">
+    <link rel="icon" href="favicon-32x32.png">
+    <link rel="icon" href="favicon-16x16.png">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <style>
+        #weather-info {
+            margin-top: 20px;
+            padding: 15px;
+            border: 2px solid #3498db;
+            border-radius: 8px;
+            background-color: #f0f8ff;
+            font-family: Arial, sans-serif;
+            width: fit-content;
+            display: none;
+        }
+        canvas {
+            margin-top: 20px;
+            background: #fff;
+            border: 1px solid #ccc;
+            border-radius: 8px;
+            padding: 10px;
+            max-width: 100%;
+        }
+    </style>
+    <script>
+        function loadWeather() {
+            const url = 'https://api.open-meteo.com/v1/forecast?latitude=55.0415&longitude=82.9346&hourly=temperature_2m,apparent_temperature&current_weather=true&past_days=1&forecast_days=1&timezone=Asia%2FBangkok';
+
+            fetch(url)
+                .then(res => res.json())
+                .then(data => {
+                    const labels = data.hourly.time.map(t => t.replace("T", " "));
+                    const temps = data.hourly.temperature_2m;
+                    const apparent = data.hourly.apparent_temperature;
+
+                    const current = data.current_weather;
+                    const currentIndex = data.hourly.time.indexOf(current.time);
+                    const currentApparent = apparent[currentIndex] ?? "н/д";
+
+                    const info = document.getElementById('weather-info');
+                    info.innerHTML = `
+                        <strong>Текущая температура:</strong> ${current.temperature} °C<br>
+                        <strong>Ощущается как:</strong> ${currentApparent} °C
+                    `;
+                    info.style.display = 'block';
+
+                    const ctx = document.getElementById('temperatureChart').getContext('2d');
+                    new Chart(ctx, {
+                        type: 'bar',
+                        data: {
+                            labels: labels,
+                            datasets: [
+                                {
+                                    label: 'Температура (°C)',
+                                    data: temps,
+                                    backgroundColor: 'lightblue'
+                                },
+                                {
+                                    label: 'Ощущаемая температура (°C)',
+                                    data: apparent,
+                                    backgroundColor: 'lightpink'
+                                }
+                            ]
+                        },
+                        options: {
+                            responsive: true,
+                            plugins: {
+                                title: {
+                                    display: true,
+                                    text: 'Температура за прошедшие и следующие сутки'
+                                },
+                                legend: {
+                                    position: 'top'
+                                }
+                            },
+                            scales: {
+                                x: {
+                                    ticks: {
+                                        maxRotation: 90,
+                                        minRotation: 45
+                                    }
+                                },
+                                y: {
+                                    beginAtZero: false
+                                }
+                            }
+                        }
+                    });
+                    event.target.remove();
+                })
+        }
+    </script>
+</head>
+
+<body>
+    <header>
+        НГТУ, ФБ, Лабораторная работа 7
+        <hr>
+    </header>
+    
+    <main>
+        <button onclick="loadWeather()">Показать температуру</button>
+        <div id="weather-info"></div>
+        <canvas id="temperatureChart" width="800" height="400"></canvas>
+    </main>
+
+    <footer>
+        &copy; Зырянова Софья, ФБИ-34, 2 курс, 2025
+        <hr>
+    </footer>
+</body>
+</html>
