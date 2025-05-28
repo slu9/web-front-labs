@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Зырянова Софья Сергеевна. Лабораторная 7</title>
+    <link rel="stylesheet" href="../main.css">
+    <link rel="shortcut icon" href="favicon.ico" type="image/x-icon">
+    <link rel="icon" href="favicon-32x32.png">
+    <link rel="icon" href="favicon-16x16.png">
+    <style>
+        table {
+            border-collapse: collapse;
+        }
+        th, td {
+            border: 1px solid black;
+            padding: 4px 8px;
+            text-align: center;
+        }
+        .positive {
+            color: green;
+        }
+        .negative {
+            color: red;
+        }
+    </style>
+    <script src="qote-data.js"></script>
+    <script>
+        function showStocks() {
+            const table = document.getElementById('stock-table');
+
+            const header = document.createElement('tr');
+            header.innerHTML = "<th>Дата</th><th>Цена, руб</th><th>Изменение</th>";
+            table.appendChild(header);
+
+            let sum = 0;
+            let min = stockPrices[0];
+            let max = stockPrices[0];
+
+            for (let i = 0; i < stockPrices.length; i++) {
+                const tr = document.createElement('tr');
+
+                const tdDate = document.createElement('td');
+                tdDate.innerText = stockDates[i];
+
+                const tdPrice = document.createElement('td');
+                tdPrice.innerText = stockPrices[i];
+
+                const tdDiff = document.createElement('td');
+                if (i === 0) {
+                    tdDiff.innerText = "—";
+                } else {
+                    const diff = stockPrices[i] - stockPrices[i - 1];
+                    tdDiff.innerText = diff;
+                    if (diff > 0) tdDiff.style.color = "green";
+                    else if (diff < 0) tdDiff.style.color = "red";
+                    else tdDiff.style.color = "black";
+                }
+
+                tr.appendChild(tdDate);
+                tr.appendChild(tdPrice);
+                tr.appendChild(tdDiff);
+                table.appendChild(tr);
+
+                sum += stockPrices[i];
+                if (stockPrices[i] > max) max = stockPrices[i];
+                if (stockPrices[i] < min) min = stockPrices[i];
+            }
+
+            const avg = (sum / stockPrices.length).toFixed(0);
+            document.getElementById('stock-detail').innerHTML = `
+                Среднее значение: ${avg} руб<br>
+                Минимальное значение: ${min} руб<br>
+                Максимальное значение: ${max} руб
+            `;
+
+            document.getElementById('stock-btn').remove();
+        }  
+    </script>
+</head>
+
+<body>
+    <header>
+        НГТУ, ФБ, Лабораторная работа 7
+        <hr>
+    </header>
+    
+    <main>
+        <button id="stock-btn" onclick="showStocks()">Курс акций Роснефть</button>
+        <table border="1" id="stock-table"></table>
+        <div id="stock-detail"></div>
+    </main>
+
+    <footer>
+        &copy;Зырянова Софья, ФБИ-34, 2 курс, 2025
+        <hr>
+    </footer>
+
+</body>
+</html>
