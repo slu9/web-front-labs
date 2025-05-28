@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Зырянова Софья Сергеевна. Лабораторная 7</title>
+    <link rel="stylesheet" href="../main.css">
+    <link rel="shortcut icon" href="favicon.ico" type="image/x-icon">
+    <link rel="icon" href="favicon-32x32.png">
+    <link rel="icon" href="favicon-16x16.png">
+    <style>
+        #weather {
+            margin-top: 20px;
+            padding: 15px;
+            border: 2px solid #3498db;
+            border-radius: 8px;
+            background-color: #f0f8ff;
+            font-family: Arial, sans-serif;
+            width: fit-content;
+            display: none;
+            }
+            #weather h3 {
+            color: #005599;
+            margin-top: 0;
+            }
+            ul {
+            padding-left: 20px;
+            }
+        </style>
+    <script>
+        function getWeather() {
+        const today = new Date().toISOString().split('T')[0];
+        const url = `https://api.open-meteo.com/v1/forecast?latitude=55.0415&longitude=82.9346&hourly=temperature_2m&timezone=Asia%2FBangkok&start_date=${today}&end_date=${today}`;
+        
+        fetch(url)
+            .then(response => response.json())
+            .then(data => {
+            const times = data.hourly.time;
+            const temps = data.hourly.temperature_2m;
+
+            const targetHours = ['08:00', '12:00', '20:00'];
+            let output = `<h3>Температура в Новосибирске на ${today}</h3><ul>`;
+
+            for (let hour of targetHours) {
+                const timeKey = `${today}T${hour}`;
+                const index = times.indexOf(timeKey);
+                if (index !== -1) {
+                output += `<li><strong>${hour}</strong>: ${temps[index]} °C</li>`;
+                } else {
+                output += `<li><strong>${hour}</strong>: нет данных</li>`;
+                }
+            }
+
+            output += `</ul>`;
+            const block = document.getElementById('weather');
+            block.innerHTML = output;
+            block.style.display = 'block';
+            document.getElementById('weather-btn')?.remove();
+            })
+            .catch(error => {
+            const block = document.getElementById('weather');
+            block.innerHTML = `<p style="color:red;">Ошибка загрузки: ${error}</p>`;
+            block.style.display = 'block';
+            });
+        }
+    </script>
+</head>
+
+<body>
+    <header>
+        НГТУ, ФБ, Лабораторная работа 7
+        <hr>
+    </header>
+    
+    <main>
+        <button id="weather-btn" onclick="getWeather()">Показать температуру</button>
+        <div id="weather"></div>
+    </main>
+
+    <footer>
+        &copy; Зырянова Софья, ФБИ-34, 2 курс, 2025
+        <hr>
+    </footer>
+</body>
+</html>
